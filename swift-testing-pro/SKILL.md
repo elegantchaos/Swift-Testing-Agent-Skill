@@ -20,16 +20,31 @@ Review process:
 If doing partial work, load only the relevant reference files.
 
 
+## Local Integration Notes
+
+- This fork is the specialist Swift Testing reference layer. Local workflow, validation order, and reporting conventions belong in baseline instructions or a separate workflow skill.
+- Swift 6.2 or later with current Swift Testing APIs is the recommended baseline for new projects.
+- For older projects, recommend upgrading the toolchain and Swift Testing usage to Swift 6.2-era conventions before falling back to older patterns. If the user chooses not to upgrade, work within the project's current constraints and say so clearly.
+- Treat compiler diagnostics, the installed toolchain, and primary-source documentation as authoritative when API behavior or availability is uncertain. Do not assume this skill overrides them.
+
+
 ## Core Instructions
 
-- Target Swift 6.2 or later, using modern Swift concurrency.
+- Prefer Swift 6.2 or later and current Swift Testing APIs for all new work. If the repository is older, suggest a 6.2+ upgrade first, then continue with the existing toolchain only if the user declines or project constraints block the migration.
 - As a Swift Testing developer, the user wants all new unit and integration tests to be written using Swift Testing, and they may ask for help migrating existing XCTest code to Swift Testing.
-- Swift Testing does *not* support UI tests – XCTest must be used there.
+- At the time of writing, Swift Testing does *not* support UI tests, so XCTest remains the correct choice there unless the installed toolchain clearly proves otherwise.
 - Use a consistent project structure, with folder layout determined by app features.
 
-Swift Testing evolves with each Swift release, so expect three to four releases each year, each introducing new features. This means existing training data you have will naturally be outdated or missing key features.
+Swift Testing evolves quickly, so some details will vary by toolchain version and existing training data may lag behind. Prefer the Swift 6.2+ model when the project can support it, but treat the installed compiler and toolchain as the first source of truth for availability and diagnostics, and verify uncertain claims against primary sources rather than assuming novelty alone makes them correct.
 
-This skill specifically draws upon the very latest Swift and Swift Testing code, which means it will suggest things you are not aware of. Treat the user’s installed toolchain as authoritative, but there's a fairly high chance Apple's *documentation* about the APIs will be stale, so treat them carefully.
+
+## Test Strategy
+
+- Inspect the repository's existing test layout and naming style before adding new tests.
+- Add or update tests for new behavior and bug fixes, including regression coverage where appropriate.
+- Prefer focused unit and integration tests over heavy end-to-end coverage unless the risk clearly requires full-stack validation.
+- Test through stable interfaces where possible, and keep tests explicit and readable.
+- Cover important edge cases and failure paths touched by the change.
 
 
 ## Output Format

@@ -4,7 +4,7 @@ Swift Testing is still very new compared to XCTest, which means the majority of 
 
 This guide provides core rules you must always follow to ensure you're making natural, idiomatic use of Swift Testing, and not just reskinning XCTest based on old training data.
 
-**Important:** At this time, Swift Testing does *not* support UI tests, so XCTest must be used there.
+**Important:** At the time of writing, Swift Testing does *not* support UI tests, so XCTest must be used there unless the installed toolchain clearly proves otherwise.
 
 - When organizing test suites, prefer structs over classes. You *can* use classes, but structs are preferred unless you need subclassing or deinitializers.
 - Agents frequently add `@Suite` to every test struct. This is unnecessary: any type that contains `@Test` methods is automatically treated as a test suite. You only need `@Suite` explicitly when you want to name it or attach traits, e.g. `@Suite(.tags(.networking))`.

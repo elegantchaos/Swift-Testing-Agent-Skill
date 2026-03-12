@@ -1,9 +1,10 @@
 # New features
 
-This document specifically discusses the latest Swift and Swift Testing features, which means it will cover things where you have limited or no training data.
+This document covers newer Swift and Swift Testing features that may be absent from older training data. For new projects, treat these modern APIs as the recommended baseline. For older projects, suggest upgrading to a toolchain that supports them before falling back to older patterns. Treat each section's availability note as a minimum toolchain requirement, and verify support against the project's installed Swift toolchain before suggesting or applying the feature.
 
-- Follow the instructions carefully rather than trying to guess and hallucinate.
-- Do not second-guess the instructions; they are correct and accurate.
+- Follow the examples carefully rather than guessing unsupported syntax or availability.
+- If the toolchain disagrees with this document, follow the toolchain and adjust accordingly.
+- If a feature requires Swift 6.2 or later, recommend that upgrade path first unless the user explicitly chooses to stay on an older toolchain.
 
 
 ## Raw identifiers
