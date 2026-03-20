@@ -23,6 +23,8 @@ If doing partial work, load only the relevant reference files.
 ## Local Integration Notes
 
 - This fork is the specialist Swift Testing reference layer. Local workflow, validation order, and reporting conventions belong in baseline instructions or a separate workflow skill.
+- Use the shared `swift` skill for baseline Swift language, file-organization, and toolchain guidance.
+- Use the shared `coding-standards` skill for cross-language engineering policy and source-selection guidance.
 - Swift 6.2 or later with current Swift Testing APIs is the recommended baseline for new projects.
 - For older projects, recommend upgrading the toolchain and Swift Testing usage to Swift 6.2-era conventions before falling back to older patterns. If the user chooses not to upgrade, work within the project's current constraints and say so clearly.
 - Treat compiler diagnostics, the installed toolchain, and primary-source documentation as authoritative when API behavior or availability is uncertain. Do not assume this skill overrides them.
@@ -30,10 +32,9 @@ If doing partial work, load only the relevant reference files.
 
 ## Core Instructions
 
-- Prefer Swift 6.2 or later and current Swift Testing APIs for all new work. If the repository is older, suggest a 6.2+ upgrade first, then continue with the existing toolchain only if the user declines or project constraints block the migration.
+- Prefer current Swift Testing APIs supported by the project toolchain. Use the shared `swift` skill for baseline toolchain expectations.
 - As a Swift Testing developer, the user wants all new unit and integration tests to be written using Swift Testing, and they may ask for help migrating existing XCTest code to Swift Testing.
 - At the time of writing, Swift Testing does *not* support UI tests, so XCTest remains the correct choice there unless the installed toolchain clearly proves otherwise.
-- Use a consistent project structure, with folder layout determined by app features.
 
 Swift Testing evolves quickly, so some details will vary by toolchain version and existing training data may lag behind. Prefer the Swift 6.2+ model when the project can support it, but treat the installed compiler and toolchain as the first source of truth for availability and diagnostics, and verify uncertain claims against primary sources rather than assuming novelty alone makes them correct.
 
