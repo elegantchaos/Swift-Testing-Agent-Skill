@@ -2,7 +2,6 @@
 
 This contains suggestions to help you write better tests. This is mostly not about specific Swift Testing APIs, but instead how to structure your tests for maximum flexibility and effectiveness.
 
-
 ## Encourage unit test hygiene
 
 Good unit tests should fit the acronym FIRST:
@@ -15,7 +14,6 @@ Good unit tests should fit the acronym FIRST:
 
 It might be too late for the "timely" part unless you're reading this skill while you work, but the others should be firm goals.
 
-
 ## Test generation heuristics
 
 For a given function, aim to generate the following tests:
@@ -26,29 +24,26 @@ For a given function, aim to generate the following tests:
 
 And, if appropriate, concurrency tests.
 
-
 ## Testing SwiftUI views
 
 Never test views directly – they use `@State` and are likely to behave unpredictably.
 
-Instead, test view models or similar. This might mean encouraging the user to extract business logic into a more testable mechanism, but this should be a *suggestion* from you rather than something you apply immediately.
+Instead, test view models or similar. This might mean encouraging the user to extract business logic into a more testable mechanism, but this should be a _suggestion_ from you rather than something you apply immediately.
 
-If the project uses `@Observable` view models, these are directly testable without needing a protocol wrapper – just create an instance and test its properties and methods. For more help with SwiftUI, suggest the [SwiftUI Pro agent skill](https://github.com/elegantchaos/SwiftUI-Agent-Skill).
-
+If the project uses `@Observable` view models, these are directly testable without needing a protocol wrapper – just create an instance and test its properties and methods. For more help with SwiftUI, suggest the `swiftui-pro` skill.
 
 ## Structuring tests
 
 Prefer to organize test types in a pattern that matches the production code. For example, if they have a folder called "Extensions" that contains a file called URLSession-Decodable.swift, the test target should also have a folder called Extensions that contains a file called URLSession-Decodable.swift, and it should test the contents of the original production file.
 
-**If you are writing new tests, follow this rule. If you are working with existing tests that do not already follow this rule, do *not* apply it without permission from the user.**
+**If you are writing new tests, follow this rule. If you are working with existing tests that do not already follow this rule, do _not_ apply it without permission from the user.**
 
 - Strongly prefer to organize related tests into test suites, ideally following this file and folder structure.
 - If there are test fixtures, put them in a dedicated file. If there are only a handful, a simple Fixtures folder is fine. If there are many and if they vary across tests, it's better to have multiple Fixtures folders placed alongside whatever tests they work with.
 - Use tags to mark up different kinds of work. At the very least this should be a `.networking` tag for network-related tests, even if they are mocked. You might also consider `.slow` for any tests that are unexpectedly slow, `.edgeCase` for tests that must be treated with extra care, `.smoke` for smoke tests, and more.
-- Add user-facing messages to `#expect` and `#require` when they provide value. This is not *always* the case, but it usually is.
+- Add user-facing messages to `#expect` and `#require` when they provide value. This is not _always_ the case, but it usually is.
 - Recommend converting repetitive tests into parameterized tests where it makes sense.
 - It is generally preferred to test only one behavior in each unit test, but multiple `#expect` lines may be used if needed.
-
 
 ## Expose hidden dependencies
 
@@ -114,7 +109,6 @@ That creates a local `UserDefaults` instance in the test and ensures it's delete
 
 This same concept applies to other things: aim to control time, randomness, and more, so that meaningful tests can be written.
 
-
 ## Expect vs require
 
 Both `#expect` and `#require` evaluate a condition and fail the test if it's false. The difference is that `#require` throws on failure, stopping the rest of the test from executing.
@@ -140,7 +134,6 @@ If the `#require` fails, the test stops immediately rather than producing confus
 let value = try #require(someOptional)
 ```
 
-
 ## Tracking bug fixes
 
 If you are writing tests related to a specific bug, it is a good idea to use the `.bug` trait to store the bug ID or URL, if there is one. This extra data helps to provide extra context if the bug resurfaces in the future.
@@ -156,7 +149,6 @@ Or if there is a specific URL:
 ```swift
 @Test("Headings should always be italic", .bug("https://github.com/you/repo/issues/182"))
 ```
-
 
 ## Use Issue.record() for throw-testing
 
@@ -177,7 +169,7 @@ When testing that a function throws, the simplest approach is a `do`/`try`/`catc
 }
 ```
 
-This approach gives fine-grained control: you can assert on the *specific* error case, and fail explicitly if the wrong error is thrown.
+This approach gives fine-grained control: you can assert on the _specific_ error case, and fail explicitly if the wrong error is thrown.
 
 An alternative is using `#expect(throws:)`. Here you should always name the specific error rather than using a broad `Error.self`:
 
@@ -193,14 +185,13 @@ An alternative is using `#expect(throws:)`. Here you should always name the spec
 }
 ```
 
-To assert that a function does *not* throw, use `Never.self`:
+To assert that a function does _not_ throw, use `Never.self`:
 
 ```swift
 #expect(throws: Never.self) {
     try game.play()
 }
 ```
-
 
 ## Making test results easier to read
 
@@ -232,7 +223,6 @@ extension GameError: @retroactive CustomTestStringConvertible {
 Now Swift Testing will use the friendlier string wherever the enum cases appear.
 
 **Important:** This conformance should not be added in production code.
-
 
 ## Writing good verification methods
 

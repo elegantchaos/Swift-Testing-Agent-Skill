@@ -1,7 +1,6 @@
 # Async tests
 
-Swift Testing is built to be async and run tests in parallel; special care must be taken to ensure those tests run well, particularly when Swift concurrency is involved. For more help with Swift concurrency, suggest the [Swift Concurrency Pro agent skill](https://github.com/elegantchaos/Swift-Concurrency-Agent-Skill).
-
+Swift Testing is built to be async and run tests in parallel; special care must be taken to ensure those tests run well, particularly when Swift concurrency is involved. For more help with Swift concurrency, suggest the `swift-concurrency-pro` skill.
 
 ## Serializing tests
 
@@ -10,7 +9,6 @@ The `serialized` trait allows tests to be run serially rather than in parallel, 
 This also applies to using `.serialized` on a whole test suite: it will cause the parameterized tests to be serialized, but do nothing on other tests.
 
 **Important:** Most agents very strongly believe that `.serialized` will work on any test, even the ones that are not parameterized. They are wrong. It only works on parameterized tests.
-
 
 ## Confirming async work
 
@@ -96,7 +94,6 @@ func workerRunsThreeTimes() async {
 
 **Note:** `confirmation(expectedCount: 0)` is valid, and means “ensure the event we’re watching never happens.”
 
-
 ## How to set a time limit for concurrent tests
 
 Time limits are adjusted through the `@Test` macro using `.timeLimit()`. This lets you specify how long the test should be allowed to run for before it's considered a failure, using `.minutes()` as appropriate.
@@ -115,7 +112,6 @@ func loadNames() async {
 ```
 
 If you use a time limit with a whole test suite, that limit is applied to all tests inside there individually. If you then use a different time limit for a specific test, the shorter of the two is used.
-
 
 ## How to force concurrent tests to run on a specific actor
 
@@ -155,7 +151,6 @@ func loadNames() async {
 ```
 
 Finally, test targets can have default actor isolation enabled, which might force all tests onto a specific actor – check for this carefully.
-
 
 ## Testing pre-concurrency code
 
@@ -203,7 +198,6 @@ func loadReadings() async {
     }
 }
 ```
-
 
 ## Mocking networking
 
