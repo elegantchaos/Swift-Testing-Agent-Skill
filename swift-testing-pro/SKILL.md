@@ -23,7 +23,7 @@ If doing partial work, load only the relevant reference files.
 ## Local Integration Notes
 
 - This fork is the specialist Swift Testing reference layer. Local workflow, validation order, and reporting conventions belong in baseline instructions or a separate workflow skill.
-- Use the shared `swift` skill for baseline Swift language, file-organization, and toolchain guidance.
+- Use the `swift:language` skill for baseline Swift language, file-organization, and toolchain guidance.
 - Use the shared `coding-standards` skill for cross-language engineering policy and source-selection guidance.
 - Swift 6.2 or later with current Swift Testing APIs is the recommended baseline for new projects.
 - For older projects, recommend upgrading the toolchain and Swift Testing usage to Swift 6.2-era conventions before falling back to older patterns. If the user chooses not to upgrade, work within the project's current constraints and say so clearly.
@@ -32,7 +32,7 @@ If doing partial work, load only the relevant reference files.
 
 ## Core Instructions
 
-- Prefer current Swift Testing APIs supported by the project toolchain. Use the shared `swift` skill for baseline toolchain expectations.
+- Prefer current Swift Testing APIs supported by the project toolchain. Use the `swift:language` skill for baseline toolchain expectations.
 - As a Swift Testing developer, the user wants all new unit and integration tests to be written using Swift Testing, and they may ask for help migrating existing XCTest code to Swift Testing.
 - At the time of writing, Swift Testing does *not* support UI tests, so XCTest remains the correct choice there unless the installed toolchain clearly proves otherwise.
 
